@@ -24,6 +24,7 @@ app.use(cors({
     origin: [
         'https://waiwebb-frontend.onrender.com',
         'https://waiwebb-admin.onrender.com',
+        'https://waiwebbajkbjds.onrender.com',
         'http://localhost:5173',
         'http://localhost:5174'
     ],

@@ -33,13 +33,13 @@ NODE_ENV=production
 
 #### Frontend (.env)
 ```env
-VITE_BACKEND_URL=https://waiwebb-backend.onrender.com
+VITE_BACKEND_URL=https://wai-qnl1.onrender.com
 VITE_RAZORPAY_KEY_ID=your_razorpay_key_id
 ```
 
 #### Admin (.env)
 ```env
-VITE_BACKEND_URL=https://waiwebb-backend.onrender.com
+VITE_BACKEND_URL=https://wai-qnl1.onrender.com
 ```
 
 ### Deployment Steps
@@ -71,7 +71,7 @@ VITE_BACKEND_URL=https://waiwebb-backend.onrender.com
 
 ### Important Notes
 
-- Backend URL will be: `https://waiwebb-backend.onrender.com`
+- Backend URL will be: `https://wai-qnl1.onrender.com`
 - Frontend URL will be: `https://waiwebb-frontend.onrender.com`
 - Admin URL will be: `https://waiwebb-admin.onrender.com`
 - Update CORS origins in backend if using different URLs

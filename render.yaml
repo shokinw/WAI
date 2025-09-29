@@ -40,7 +40,7 @@ services:
     staticPublishPath: dist
     envVars:
       - key: VITE_BACKEND_URL
-        value: https://waiwebb-backend.onrender.com
+        value: https://wai-qnl1.onrender.com
       - key: VITE_RAZORPAY_KEY_ID
         sync: false
 
@@ -52,4 +52,4 @@ services:
     staticPublishPath: dist
     envVars:
       - key: VITE_BACKEND_URL
-        value: https://waiwebb-backend.onrender.com
+        value: https://wai-qnl1.onrender.com
