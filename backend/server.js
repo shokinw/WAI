@@ -12,7 +12,7 @@ import cartRouter from "./routes/cartRoute.js";
 import orderRouter from "./routes/orderRoute.js";
 
 const app = express();
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 4001;
 
 // Connect DB + Cloudinary
 connectDB();
@@ -25,6 +25,7 @@ app.use(cors({
         'https://waiwebb-frontend.onrender.com',
         'https://waiwebb-admin.onrender.com',
         'https://waiwebbajkbjds.onrender.com',
+        'https://wai-qnl1.onrender.com',
         'http://localhost:5173',
         'http://localhost:5174'
     ],

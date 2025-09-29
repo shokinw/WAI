@@ -18,10 +18,27 @@ const addProduct = async (req, res) => {
 
     let imagesUrl = [];
     if (images.length > 0) {
+      // Check if Cloudinary is configured
+      if (!process.env.CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_API_KEY || !process.env.CLOUDINARY_API_SECRET) {
+        return res.status(500).json({ 
+          success: false, 
+          message: "Image upload service not configured. Please contact administrator." 
+        });
+      }
+
       imagesUrl = await Promise.all(
         images.map(async (file) => {
           try {
-            const result = await cloudinary.uploader.upload(file.path, { resource_type: "image" });
+            const result = await cloudinary.uploader.upload(file.path, { 
+              resource_type: "image",
+              folder: "wai-web/products",
+              quality: "auto",
+              fetch_format: "auto",
+              transformation: [
+                { width: 800, height: 800, crop: "limit" },
+                { quality: "auto" }
+              ]
+            });
             return result.secure_url;
           } catch (err) {
             console.error("Cloudinary upload error:", err);
@@ -30,6 +47,13 @@ const addProduct = async (req, res) => {
         })
       );
       imagesUrl = imagesUrl.filter(Boolean); // remove nulls
+      
+      if (imagesUrl.length === 0) {
+        return res.status(400).json({ 
+          success: false, 
+          message: "Failed to upload images. Please try again." 
+        });
+      }
     }
 
     // Safe parsing of sizes and multi-selects

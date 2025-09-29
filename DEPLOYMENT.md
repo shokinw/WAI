@@ -31,6 +31,8 @@ PORT=4000
 NODE_ENV=production
 ```
 
+**Important**: Cloudinary is required for image uploads. Get your credentials from [cloudinary.com](https://cloudinary.com) dashboard.
+
 #### Frontend (.env)
 ```env
 VITE_BACKEND_URL=https://wai-qnl1.onrender.com

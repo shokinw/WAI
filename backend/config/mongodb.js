@@ -21,10 +21,7 @@ const connectDB = async () => {
             throw new Error("MONGODB_URI environment variable is not defined");
         }
 
-        await mongoose.connect(`${mongoURI}/WAIWEB`, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
+        await mongoose.connect(`${mongoURI}/WAIWEB`);
 
         console.log("🔗 Connected to MongoDB Atlas");
     } catch (error) {
