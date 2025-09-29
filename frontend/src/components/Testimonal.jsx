@@ -8,12 +8,12 @@ import p6 from "../assets/p6.jpg";
 
 const Testimonal = () => {
     const cardsData = [
-        { image: p1, name: "Briar Martin", handle: "@neilstellar", date: "April 20, 2025" },
-        { image: p2, name: "Avery Johnson", handle: "@averywrites", date: "May 10, 2025" },
-        { image: p3, name: "Jordan Lee", handle: "@jordantalks", date: "June 5, 2025" },
-        { image: p4, name: "Avery Johnson", handle: "@averywrites", date: "May 10, 2025" },
-        { image: p5, name: "Sam Ridhi", handle: "@samridi", date: "July 15, 2025" },
-        { image: p6, name: "Taylor Swift", handle: "@taylorsongs", date: "August 1, 2025" },
+        { image: p1, name: "Priya Sharma", handle: "@priya_style", date: "Dec 15, 2024", review: "Absolutely love my new kurti! The quality is amazing and delivery was super fast." },
+        { image: p2, name: "Ananya Patel", handle: "@ananya_fashion", date: "Dec 10, 2024", review: "WAI never disappoints! Perfect fit and beautiful designs every time." },
+        { image: p3, name: "Kavya Reddy", handle: "@kavya_trends", date: "Dec 8, 2024", review: "Great customer service and the return process was so easy. Highly recommended!" },
+        { image: p4, name: "Riya Singh", handle: "@riya_style", date: "Dec 5, 2024", review: "The fabric quality is outstanding and the designs are so trendy. Love it!" },
+        { image: p5, name: "Sneha Kumar", handle: "@sneha_fashion", date: "Dec 2, 2024", review: "Fast shipping and the kurti fits perfectly. Will definitely order again!" },
+        { image: p6, name: "Meera Joshi", handle: "@meera_style", date: "Nov 28, 2024", review: "Beautiful collection and excellent quality. WAI is my go-to fashion brand!" },
     ];
 
     const CreateCard = ({ card }) => (
@@ -30,7 +30,7 @@ const Testimonal = () => {
                     <span className="text-xs text-[#933757]/70">{card.handle}</span>
                 </div>
             </div>
-            <p className="text-sm py-4 text-gray-800">Radiant made undercutting all of our competitors an absolute breeze.</p>
+            <p className="text-sm py-4 text-gray-800">{card.review}</p>
             <div className="flex items-center justify-between text-[#933757]/80 text-xs">
                 <div className="flex items-center gap-1">
                     <span>Posted on</span>

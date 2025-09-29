@@ -51,8 +51,8 @@ const Navbar = () => {
 
   return (
     <div className="fixed top-0 left-0 w-full z-50 bg-white/10 backdrop-blur-md border-b border-white/20">
-      <div className="flex items-center justify-between py-4 px-6 md:px-12">
-        {/* LEFT MENU */}
+      <div className="flex items-center justify-between py-3 px-4 sm:py-4 sm:px-6 md:px-12">
+        {/* LEFT MENU - Hidden on mobile */}
         <ul className="hidden sm:flex gap-6 font-medium">
           <NavLink to="/" className={navLinkClass}>
             <p>Home</p>
@@ -68,19 +68,19 @@ const Navbar = () => {
           </NavLink>
         </ul>
 
-        {/* CENTER LOGO */}
+        {/* CENTER LOGO - Always centered */}
         <div className="absolute left-1/2 transform -translate-x-1/2">
           <Link to="/">
             <img
               src={logo}
               alt="Logo"
-              className="w-28 sm:w-32 md:w-40 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
+              className="w-20 sm:w-28 md:w-32 lg:w-40 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
             />
           </Link>
         </div>
 
-        {/* RIGHT SECTION */}
-        <div className="flex items-center gap-6 ml-auto">
+        {/* RIGHT SECTION - Compact on mobile */}
+        <div className="flex items-center gap-2 sm:gap-4 md:gap-6 ml-auto">
           {/* Search */}
           <img
             src={search_icon}
@@ -92,21 +92,21 @@ const Navbar = () => {
           <Link to="/cart" className="relative sm:hidden">
             <img
               src={cart_icon}
-              className="w-6 cursor-pointer hover:scale-110 transition"
+              className="w-5 cursor-pointer hover:scale-110 transition"
               alt="Cart"
             />
-            <span className="absolute -right-2 -bottom-2 w-5 h-5 flex items-center justify-center bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-full text-[10px] shadow-md">
+            <span className="absolute -right-1 -bottom-1 w-4 h-4 flex items-center justify-center bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-full text-[8px] shadow-md">
               {getCartCount()}
             </span>
           </Link>
 
-          {/* Profile */}
+          {/* Profile - Smaller on mobile */}
           <div className="relative" ref={profileRef}>
             <div
-              className="w-9 h-9 rounded-full overflow-hidden border border-white/40 cursor-pointer hover:ring-2 hover:ring-pink-400 transition"
+              className="w-7 h-7 sm:w-9 sm:h-9 rounded-full overflow-hidden border border-white/40 cursor-pointer hover:ring-2 hover:ring-pink-400 transition"
               onClick={() => setProfileOpen(!profileOpen)}
             >
-              <img src={profile_icon} alt="Profile" />
+              <img src={profile_icon} alt="Profile" className="w-full h-full object-cover" />
             </div>
 
             {profileOpen && (
@@ -154,7 +154,7 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* Cart */}
+          {/* Cart - Desktop only */}
           <Link to="/cart" className="relative hidden sm:block">
             <img
               src={cart_icon}
@@ -166,11 +166,11 @@ const Navbar = () => {
             </span>
           </Link>
 
-          {/* Mobile Menu */}
+          {/* Mobile Menu - Smaller on mobile */}
           <div className="sm:hidden relative">
             <img
               src={menu_icon}
-              className="w-6 cursor-pointer"
+              className="w-5 cursor-pointer"
               alt="Menu"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             />

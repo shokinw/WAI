@@ -17,6 +17,8 @@ const ShopContextProvider = (props) => {
     const [products, setProducts] = useState([]);
     const [token, setToken] = useState('')
     const [bubblePopup, setBubblePopup] = useState({ show: false, position: { x: 0, y: 0 }, message: '' })
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
 
 
@@ -122,17 +124,22 @@ const ShopContextProvider = (props) => {
 
     const getProductsData = async () => {
         try {
-
+            setLoading(true);
+            setError(null);
             const response = await axios.get(backendUrl + '/api/product/list')
             if (response.data.success) {
                 setProducts(response.data.products.reverse())
             } else {
+                setError(response.data.message);
                 toast.error(response.data.message)
             }
 
         } catch (error) {
             console.log(error)
+            setError(error.message);
             toast.error(error.message)
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -169,7 +176,8 @@ const ShopContextProvider = (props) => {
         cartItems, addToCart,setCartItems,
         getCartCount, updateQuantity,
         getCartAmount, navigate, backendUrl,
-        setToken, token, bubblePopup, setBubblePopup
+        setToken, token, bubblePopup, setBubblePopup,
+        loading, error
     }
 
     return (

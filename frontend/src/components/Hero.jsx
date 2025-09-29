@@ -7,21 +7,29 @@ const Hero = () => {
     <section className="w-full">
       {/* 🔹 Full-screen hero below fixed navbar */}
       <div
-        className="w-full bg-cover bg-center min-h-[calc(100vh-5rem)] sm:min-h-[calc(100vh-6rem)] md:min-h-[calc(100vh-7rem)]"
-        style={{ backgroundImage: `url(${p17})` }}
+        className="w-full bg-cover bg-center bg-no-repeat min-h-[calc(100vh-4rem)] sm:min-h-[calc(100vh-5rem)] md:min-h-[calc(100vh-6rem)] lg:min-h-[calc(100vh-7rem)]"
+        style={{ 
+          backgroundImage: `url(${p17})`,
+          backgroundPosition: 'center center',
+          backgroundSize: 'cover'
+        }}
       />
 
-      {/* 🔹 Bottom image (Billie) */}
+      {/* 🔹 Bottom image (Billie) - Responsive */}
       <div className="w-full">
         <img
           src={Billie}
           alt="Billie Banner"
           className="
             w-full 
+            h-auto
             object-cover 
-            min-h-[80px]       /* 🔹 ensures it's tall enough on small screens */
-            sm:min-h-[20px]   /* 🔹 slightly taller on tablets */
-            md:min-h-[80px]   /* 🔹 larger on desktops */
+            object-center
+            min-h-[120px]      /* Mobile: taller for better visibility */
+            sm:min-h-[150px]   /* Small tablets */
+            md:min-h-[200px]   /* Medium screens */
+            lg:min-h-[250px]   /* Large screens */
+            xl:min-h-[300px]   /* Extra large screens */
           "
         />
       </div>

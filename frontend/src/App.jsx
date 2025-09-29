@@ -25,13 +25,25 @@ import Search from './pages/Search'
 import { ToastContainer } from 'react-toastify'
 const App = () => {
   return (
-    <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
+    <div className='min-h-screen bg-gray-50'>
       <Navbar/>
-      {/* Spacer to offset fixed navbar */}
-      <div className="h-20 sm:h-24 md:h-28"></div>
-      <ToastContainer/>
+      {/* Spacer to offset fixed navbar - Responsive */}
+      <div className="h-16 sm:h-20 md:h-24 lg:h-28"></div>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <SearchBar/>
-     <Routes>
+      <main className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
+        <Routes>
   <Route path='/login' element={<Login/>} />
 
   <Route path='/' element={<ProtectedRoute><WAI/></ProtectedRoute>} />
@@ -52,10 +64,10 @@ const App = () => {
   <Route path='/contact' element={<Contact/>} />
   <Route path='/faqs' element={<FAQs/>} />
   <Route path='/offers' element={<Offers/>} />
-</Routes>
-
-     <BigBanner/>
-     <Footer/>
+        </Routes>
+      </main>
+      <BigBanner/>
+      <Footer/>
     </div>
   )
 }

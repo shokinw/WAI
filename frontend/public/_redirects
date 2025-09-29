@@ -1,0 +1,8 @@
+# Redirect order pages to home page
+/orders    /    301
+/order/*    /    301
+/checkout    /    301
+/cart    /    301
+
+# Redirect all other routes to index.html for SPA routing
+/*    /index.html   200

@@ -2,10 +2,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import { ShopContext } from '../context/ShopContextProvider';
 import Title from '../components/Title';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Orders = () => {
   const { backendUrl, token, currency } = useContext(ShopContext);
   const [orderData, setOrderData] = useState([]);
+  const navigate = useNavigate();
 
   const loadOrderData = async () => {
     try {
@@ -36,8 +38,16 @@ const Orders = () => {
   };
 
   useEffect(() => {
+    // Check if page was refreshed
+    const isRefresh = performance.navigation && performance.navigation.type === 1;
+    if (isRefresh) {
+      // Redirect to home page on refresh
+      navigate('/', { replace: true });
+      return;
+    }
+    
     loadOrderData();
-  }, [token]);
+  }, [token, navigate]);
 
   // ✅ Safe image accessor with backend prefix
   const getImageUrl = (image) => {

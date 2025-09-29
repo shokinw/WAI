@@ -46,19 +46,26 @@ const Footer = () => {
             alt="Company Logo"
           />
           <p className="mt-4 text-sm leading-relaxed text-white/80">
-            We are committed to delivering the best shopping experience with
-            high-quality products, easy exchanges, and 24/7 customer support.
+            WAI - Your premier destination for trendy fashion. We deliver 
+            high-quality products with easy exchanges and 24/7 customer support.
           </p>
 
           {/* Socials */}
-          <div className="flex items-center justify-center md:justify-start gap-5 mt-5">
-            {["Instagram", "Twitter", "Facebook", "YouTube"].map((s, i) => (
+          <div className="flex items-center justify-center md:justify-start gap-4 mt-5">
+            {[
+              { name: "Instagram", href: "https://instagram.com/wai_fashion" },
+              { name: "Twitter", href: "https://twitter.com/wai_fashion" },
+              { name: "Facebook", href: "https://facebook.com/wai_fashion" },
+              { name: "YouTube", href: "https://youtube.com/wai_fashion" }
+            ].map((social, i) => (
               <a
                 key={i}
-                href="#"
-                className="text-white/80 hover:text-white text-sm transition transform hover:scale-110"
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/80 hover:text-white text-sm transition transform hover:scale-110 hover:drop-shadow-lg"
               >
-                {s}
+                {social.name}
               </a>
             ))}
           </div>
@@ -89,7 +96,7 @@ const Footer = () => {
       <div className="relative border-t border-white/20 py-4 text-center flex flex-col sm:flex-row items-center justify-center gap-3">
         <p className="text-sm text-white/80">
           © {new Date().getFullYear()}{" "}
-          <span className="font-medium text-white">YourBrand</span>. All Rights
+          <span className="font-medium text-white">WAI Fashion</span>. All Rights
           Reserved.
         </p>
 

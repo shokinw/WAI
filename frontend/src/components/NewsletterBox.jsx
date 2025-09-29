@@ -12,10 +12,13 @@ const NewsletterBox = () => {
     <section className="py-12 sm:py-16 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-pink-50 via-white to-purple-50">
       {/* Title */}
       <div className="text-center max-w-3xl mx-auto mb-8">
-        <h1 className="text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-700 animate-pulse">
-          WAUiii
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-700 mb-4">
+          Customer Gallery
         </h1>
-        
+        <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">
+          See how our beautiful customers style their favorite WAI pieces. 
+          Join our community and share your looks!
+        </p>
       </div>
 
       {/* Horizontal scroll gallery */}
