@@ -36,7 +36,7 @@ services:
     name: waiwebb-frontend
     rootDir: frontend
     nodeVersion: 18
-    buildCommand: npm ci && npm run build
+    buildCommand: npm ci --include=dev && npm run build
     staticPublishPath: dist
     envVars:
       - key: VITE_BACKEND_URL
@@ -48,7 +48,7 @@ services:
     name: waiwebb-admin
     rootDir: admin
     nodeVersion: 18
-    buildCommand: npm ci && npm run build
+    buildCommand: npm ci --include=dev && npm run build
     staticPublishPath: dist
     envVars:
       - key: VITE_BACKEND_URL
