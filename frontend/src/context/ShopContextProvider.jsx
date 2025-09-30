@@ -10,8 +10,8 @@ const ShopContextProvider = (props) => {
 
     const currency = '₹';
     const delivery_fee = 0;
-    // Use local backend for development
-    const backendUrl = 'http://localhost:4001';
+    // Use production backend to work on mobile and deployed environments
+    const backendUrl = 'https://waiwebbajkbjds.onrender.com';
     const [search, setSearch] = useState('');
     const [showSearch, setShowSearch] = useState(false);
     const [cartItems, setCartItems] = useState({});
