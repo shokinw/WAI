@@ -24,6 +24,7 @@ app.use(cors({
     origin: [
         'https://waiwebb-frontend.onrender.com',
         'https://waiwebb-admin.onrender.com',
+        'https://wai-admin.onrender.com',  // Added new admin URL
         'https://waiwebbajkbjds.onrender.com',
         'https://wai-qnl1.onrender.com',
         'https://wai-4.onrender.com',  // Added new frontend URL
