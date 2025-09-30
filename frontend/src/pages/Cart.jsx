@@ -11,14 +11,6 @@ const Cart = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if page was refreshed
-    const isRefresh = performance.navigation && performance.navigation.type === 1;
-    if (isRefresh) {
-      // Redirect to home page on refresh
-      navigate('/', { replace: true });
-      return;
-    }
-
     if (products.length > 0) {
       const tempData = [];
       for (const items in cartItems) {

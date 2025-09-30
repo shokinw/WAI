@@ -10,13 +10,15 @@ const createToken = (id) => {
 // User Login
 const loginUser = async (req, res) => {
     try {
+        console.log('Login request body:', req.body);
         const { email, password } = req.body;
 
         // Validation
         if (!email || !password) {
-            return res.status(400).json({ 
-                success: false, 
-                message: "Email and password are required" 
+            console.log('Login validation failed - missing fields:', { email: !!email, password: !!password });
+            return res.status(400).json({
+                success: false,
+                message: "Email and password are required"
             });
         }
 
@@ -28,7 +30,9 @@ const loginUser = async (req, res) => {
         }
 
         const user = await userModel.findOne({ email });
+        console.log('User found:', user ? 'Yes' : 'No');
         if (!user) {
+            console.log('User not found for email:', email);
             return res.status(401).json({ 
                 success: false, 
                 message: "User doesn't exist" 
@@ -36,7 +40,9 @@ const loginUser = async (req, res) => {
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
+        console.log('Password match:', isMatch);
         if (!isMatch) {
+            console.log('Password mismatch for user:', email);
             return res.status(401).json({ 
                 success: false, 
                 message: "Invalid credentials" 
@@ -58,10 +64,12 @@ const loginUser = async (req, res) => {
 // User Register
 const registerUser = async (req, res) => {
     try {
+        console.log('Register request body:', req.body);
         const { name, email, password } = req.body;
 
         // Validation
         if (!name || !email || !password) {
+            console.log('Validation failed - missing fields:', { name: !!name, email: !!email, password: !!password });
             return res.status(400).json({ 
                 success: false, 
                 message: "Name, email, and password are required" 
@@ -69,6 +77,7 @@ const registerUser = async (req, res) => {
         }
 
         if (!validator.isEmail(email)) {
+            console.log('Email validation failed:', email);
             return res.status(400).json({ 
                 success: false, 
                 message: "Invalid email format" 
@@ -76,6 +85,7 @@ const registerUser = async (req, res) => {
         }
 
         if (password.length < 8) {
+            console.log('Password validation failed - length:', password.length);
             return res.status(400).json({ 
                 success: false, 
                 message: "Password must be at least 8 characters long" 
@@ -85,6 +95,7 @@ const registerUser = async (req, res) => {
         // Check if user already exists
         const exists = await userModel.findOne({ email });
         if (exists) {
+            console.log('User already exists:', email);
             return res.status(409).json({ 
                 success: false, 
                 message: "User already exists" 

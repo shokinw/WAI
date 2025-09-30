@@ -38,16 +38,8 @@ const Orders = () => {
   };
 
   useEffect(() => {
-    // Check if page was refreshed
-    const isRefresh = performance.navigation && performance.navigation.type === 1;
-    if (isRefresh) {
-      // Redirect to home page on refresh
-      navigate('/', { replace: true });
-      return;
-    }
-    
     loadOrderData();
-  }, [token, navigate]);
+  }, [token]);
 
   // ✅ Safe image accessor with backend prefix
   const getImageUrl = (image) => {

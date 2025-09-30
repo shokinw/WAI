@@ -9,7 +9,7 @@ const Login = () => {
   const { token, setToken, navigate, backendUrl } = useContext(ShopContext)
 
   const [name,setName] = useState('')
-  const [password,setPasword] = useState('')
+  const [password,setPassword] = useState('')
   const [email,setEmail] = useState('')
 
   const onSubmitHandler = async (event) => {
@@ -39,8 +39,12 @@ const Login = () => {
 
 
       } catch (error) {
-        console.log(error)
-        toast.error(error.message)
+        console.log('Login/Register error:', error)
+        if (error.response && error.response.data && error.response.data.message) {
+          toast.error(error.response.data.message)
+        } else {
+          toast.error(error.message)
+        }
       }
   }
 
@@ -65,7 +69,7 @@ const Login = () => {
               <input onChange={(e)=>setName(e.target.value)} value={name} type='text' className='w-full px-4 py-2.5 border rounded-lg border-gray-200 focus:border-pink-400 outline-none transition' placeholder='Name' required/>
             )}
             <input onChange={(e)=>setEmail(e.target.value)} value={email} type='email' className='w-full px-4 py-2.5 border rounded-lg border-gray-200 focus:border-pink-400 outline-none transition' placeholder='Email' required/>
-            <input onChange={(e)=>setPasword(e.target.value)} value={password} type='password' className='w-full px-4 py-2.5 border rounded-lg border-gray-200 focus:border-pink-400 outline-none transition' placeholder='Password' required/>
+            <input onChange={(e)=>setPassword(e.target.value)} value={password} type='password' className='w-full px-4 py-2.5 border rounded-lg border-gray-200 focus:border-pink-400 outline-none transition' placeholder='Password' required/>
 
             <div className='w-full flex justify-between text-sm -mt-1'>
               <p className='text-gray-500 cursor-pointer hover:text-pink-600 transition'>Forgot your password?</p>

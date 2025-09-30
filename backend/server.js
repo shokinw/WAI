@@ -28,7 +28,8 @@ app.use(cors({
         'https://wai-qnl1.onrender.com',
         'https://wai-4.onrender.com',  // Added new frontend URL
         'http://localhost:5173',
-        'http://localhost:5174'
+        'http://localhost:5174',
+        'http://localhost:5175'  // Added port 5175
     ],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
