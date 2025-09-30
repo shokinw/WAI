@@ -26,10 +26,13 @@ app.use(cors({
         'https://waiwebb-admin.onrender.com',
         'https://waiwebbajkbjds.onrender.com',
         'https://wai-qnl1.onrender.com',
+        'https://wai-4.onrender.com',  // Added new frontend URL
         'http://localhost:5173',
         'http://localhost:5174'
     ],
-    credentials: true
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'token']
 }));
 
 // Fix __dirname for ES Modules
@@ -51,7 +54,17 @@ app.get("/", (req, res) => {
         success: true, 
         message: "WAI-WEB API is running ✅",
         timestamp: new Date().toISOString(),
-        environment: process.env.NODE_ENV || 'development'
+        environment: process.env.NODE_ENV || 'development',
+        cors: "Enabled for all configured origins",
+        allowedOrigins: [
+            'https://waiwebb-frontend.onrender.com',
+            'https://waiwebb-admin.onrender.com',
+            'https://waiwebbajkbjds.onrender.com',
+            'https://wai-qnl1.onrender.com',
+            'https://wai-4.onrender.com',
+            'http://localhost:5173',
+            'http://localhost:5174'
+        ]
     });
 });
 

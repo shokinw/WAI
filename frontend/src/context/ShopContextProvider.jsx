@@ -10,7 +10,8 @@ const ShopContextProvider = (props) => {
 
     const currency = '₹';
     const delivery_fee = 0;
-    const backendUrl = (import.meta.env.VITE_BACKEND_URL || '').replace(/\/+$/, '')
+    // Use local backend for development
+    const backendUrl = 'http://localhost:4001';
     const [search, setSearch] = useState('');
     const [showSearch, setShowSearch] = useState(false);
     const [cartItems, setCartItems] = useState({});
@@ -126,7 +127,13 @@ const ShopContextProvider = (props) => {
         try {
             setLoading(true);
             setError(null);
-            const response = await axios.get(backendUrl + '/api/product/list')
+            
+            const response = await axios.get(backendUrl + '/api/product/list', {
+                timeout: 10000,
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
             if (response.data.success) {
                 setProducts(response.data.products.reverse())
             } else {
@@ -135,9 +142,15 @@ const ShopContextProvider = (props) => {
             }
 
         } catch (error) {
-            console.log(error)
-            setError(error.message);
-            toast.error(error.message)
+            console.log('Error fetching products:', error)
+            
+            if (error.code === 'ERR_NETWORK' || error.message.includes('CORS')) {
+                setError('Unable to connect to server. Please check your internet connection.');
+                toast.error('Connection error. Please try again later.');
+            } else {
+                setError(error.message);
+                toast.error(error.message)
+            }
         } finally {
             setLoading(false);
         }
@@ -145,13 +158,12 @@ const ShopContextProvider = (props) => {
 
     const getUserCart = async ( token ) => {
         try {
-            
             const response = await axios.post(backendUrl + '/api/cart/get',{},{headers:{token}})
             if (response.data.success) {
                 setCartItems(response.data.cartData)
             }
         } catch (error) {
-            console.log(error)
+            console.log('Error fetching cart:', error)
             toast.error(error.message)
         }
     }

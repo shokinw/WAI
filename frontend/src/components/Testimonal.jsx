@@ -24,7 +24,7 @@ const Testimonal = () => {
                     <div className="flex items-center gap-2">
                         <p className="font-semibold text-[#933757]">{card.name}</p>
                         <svg className="mt-0.5" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fillRule="evenodd" clipRule="evenodd" d="M4.555.72a4 4 0 0 1-.297.24..." fill="#933757" />
+                            <path fillRule="evenodd" clipRule="evenodd" d="M6 0L7.5 4.5L12 4.5L8.5 7.5L10 12L6 9L2 12L3.5 7.5L0 4.5L4.5 4.5L6 0Z" fill="#933757" />
                         </svg>
                     </div>
                     <span className="text-xs text-[#933757]/70">{card.handle}</span>
