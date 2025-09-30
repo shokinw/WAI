@@ -20,22 +20,34 @@ connectCloudinary();
 
 // Middlewares
 app.use(express.json());
-app.use(cors({
-    origin: [
-        'https://waiwebb-frontend.onrender.com',
-        'https://waiwebb-admin.onrender.com',
-        'https://wai-admin.onrender.com',  // Added new admin URL
-        'https://waiwebbajkbjds.onrender.com',
-        'https://wai-qnl1.onrender.com',
-        'https://wai-4.onrender.com',  // Added new frontend URL
-        'http://localhost:5173',
-        'http://localhost:5174',
-        'http://localhost:5175'  // Added port 5175
-    ],
+
+// Centralized CORS configuration with explicit preflight handling
+const allowedOrigins = [
+    'https://waiwebb-frontend.onrender.com',
+    'https://waiwebb-admin.onrender.com',
+    'https://wai-admin.onrender.com',
+    'https://waiwebbajkbjds.onrender.com',
+    'https://wai-qnl1.onrender.com',
+    'https://wai-4.onrender.com',
+    'http://localhost:5173',
+    'http://localhost:5174',
+    'http://localhost:5175'
+];
+
+const corsOptions = {
+    origin: (origin, callback) => {
+        if (!origin) return callback(null, true); // allow non-browser clients
+        if (allowedOrigins.includes(origin)) return callback(null, true);
+        return callback(new Error('Not allowed by CORS'));
+    },
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization', 'token']
-}));
+};
+
+app.use(cors(corsOptions));
+// Ensure preflight requests are handled before hitting other middleware
+app.options('*', cors(corsOptions));
 
 // Fix __dirname for ES Modules
 const __filename = fileURLToPath(import.meta.url);
@@ -58,15 +70,7 @@ app.get("/", (req, res) => {
         timestamp: new Date().toISOString(),
         environment: process.env.NODE_ENV || 'development',
         cors: "Enabled for all configured origins",
-        allowedOrigins: [
-            'https://waiwebb-frontend.onrender.com',
-            'https://waiwebb-admin.onrender.com',
-            'https://waiwebbajkbjds.onrender.com',
-            'https://wai-qnl1.onrender.com',
-            'https://wai-4.onrender.com',
-            'http://localhost:5173',
-            'http://localhost:5174'
-        ]
+        allowedOrigins
     });
 });
 
